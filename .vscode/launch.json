@@ -1,0 +1,24 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug iOS",
+      "program": "${workspaceFolder}/.vscode/launchReactNative.js",
+      "request": "launch",
+      "type": "reactnative",
+      "platform": "ios"
+    },
+    {
+      "name": "Debug Android",
+      "program": "${workspaceFolder}/.vscode/launchReactNative.js",
+      "request": "launch",
+      "type": "reactnative",
+      "platform": "android"
+    },
+    {
+      "name": "Attach to packager",
+      "request": "attach",
+      "type": "reactnative"
+    }
+  ]
+}
