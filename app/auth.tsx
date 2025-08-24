@@ -51,7 +51,7 @@ export default function AuthScreen() {
                 <Text style={styles.title}>
                     {isSignup ? "Create Account" : "Sign In"}
                 </Text>
-                <Text>Create Accountt</Text>
+                <Text>Create Account</Text>
                 <TextInput 
                 style={styles.input} 
                 label="Email" 
