@@ -1,11 +1,18 @@
-
-
 import { Account, Client, Databases } from 'react-native-appwrite';
 
-export const client = new Client()
+// Create client in two steps so we can conditionally call setSelfSigned without TypeScript errors
+export const client = new Client();
+client
   .setEndpoint(process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT!) // Your Appwrite Endpoint
-  .setProject(process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID!) // Your Appwrite Project ID              
- .setPlatform(process.env.EXPO_PUBLIC_APPWRITE_PLATFORM!); // Set platform and version
+  .setProject(process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID!) // Your Appwrite Project ID
+  .setPlatform(process.env.EXPO_PUBLIC_APPWRITE_PLATFORM ?? 'expo'); // Set platform and version (fallback to 'expo')
+
+// If you're running Appwrite locally with a self-signed cert, set
+// EXPO_PUBLIC_APPWRITE_SELF_SIGNED=true in your env to enable this.
+if (process.env.EXPO_PUBLIC_APPWRITE_SELF_SIGNED === 'true') {
+  // react-native-appwrite typings may not include setSelfSigned; call it via any to avoid compile errors.
+  (client as any).setSelfSigned?.(true);
+}
 
 export const account = new Account(client);
 
